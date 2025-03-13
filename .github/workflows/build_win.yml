@@ -19,4 +19,5 @@ jobs:
           cmake -B build
           cmake --build build --config Debug
           rmdir /s /q build
+          cmake -B build
           cmake --build build --config Release
