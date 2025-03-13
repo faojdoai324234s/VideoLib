@@ -1,0 +1,22 @@
+name: Windows Build
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  Build-Win:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build library
+        shell: cmd
+        run: |
+          cmake -B build
+          cmake --build build --config Debug
+          rmdir /s /q build
+          cmake --build build --config Release
