@@ -7,7 +7,11 @@ on:
   pull_request:
     branches:
       - main
-
+      
+env:
+  platform: macOS
+  Qt_patch_version: 5.15.16
+  
 jobs:
   Build-macOS:
     runs-on: macos-13
@@ -15,8 +19,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Build library
         run: |
-          cmake -B build -D CMAKE_BUILD_TYPE=Debug
+          git clone https://github.com/faojdoai324234s/Qt-${{ env.platform }}.git
+          cmake -B build -D Qt5_DIR="Qt-${{ env.platform }}/Qt-${{ env.Qt_patch_version }}/lib/cmake/Qt5" -D CMAKE_BUILD_TYPE=Debug
           cmake --build build --config Debug
           rm -rf build
-          cmake -B build -D CMAKE_BUILD_TYPE=Release
+          cmake -B build -D Qt5_DIR="Qt-${{ env.platform }}/Qt-${{ env.Qt_patch_version }}/lib/cmake/Qt5" -D CMAKE_BUILD_TYPE=Release
           cmake --build build --config Release
