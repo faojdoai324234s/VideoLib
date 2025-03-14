@@ -16,8 +16,9 @@ jobs:
       - name: Build library
         shell: cmd
         run: |
-          cmake -B build
+          git clone https://github.com/faojdoai324234s/Qt-Win.git
+          cmake -B build -D QT_DIRECTORY="Qt-Win/Qt-5.15.16/lib/cmake/Qt5"
           cmake --build build --config Debug
           rmdir /s /q build
-          cmake -B build
+          cmake -B build -D QT_DIRECTORY="Qt-Win/Qt-5.15.16/lib/cmake/Qt5"
           cmake --build build --config Release
