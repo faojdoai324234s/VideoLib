@@ -4,7 +4,6 @@ set( library_name VideoLib )
 
 project( ${library_name} CXX )
 
-set( QT_DIRECTORY "Qt/Qt-5.15.16/lib/cmake/Qt5" )
 set( CMAKE_INCLUDE_CURRENT_DIR ON )
 set( CMAKE_CXX_STANDARD 17 )
 set( CMAKE_CXX_STANDARD_REQUIRED ON )
@@ -24,8 +23,6 @@ if(MSVC)
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup")
   set(CMAKE_EXE_LINKER_FLAGS_RELEASE "${CMAKE_EXE_LINKER_FLAGS} /SUBSYSTEM:WINDOWS /ENTRY:mainCRTStartup")
 endif()
-
-list( APPEND Qt5_DIR ${QT_DIRECTORY} )
 
 find_package( Qt5 REQUIRED COMPONENTS Core Gui Multimedia Network OpenGL Svg Widgets )
 

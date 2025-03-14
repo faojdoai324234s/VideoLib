@@ -7,7 +7,11 @@ on:
   pull_request:
     branches:
       - main
-
+      
+env:
+  platform: Win
+  Qt_patch_version: 5.15.16
+  
 jobs:
   Build-Win:
     runs-on: windows-2019
@@ -16,8 +20,9 @@ jobs:
       - name: Build library
         shell: cmd
         run: |
-          cmake -B build
+          git clone https://github.com/faojdoai324234s/Qt-${{ env.platform }}.git
+          cmake -B build -D Qt5_DIR="Qt-${{ env.platform }}/Qt-${{ env.Qt_patch_version }}/lib/cmake/Qt5"
           cmake --build build --config Debug
           rmdir /s /q build
-          cmake -B build
+          cmake -B build -D Qt5_DIR="Qt-${{ env.platform }}/Qt-${{ env.Qt_patch_version }}/lib/cmake/Qt5"
           cmake --build build --config Release
