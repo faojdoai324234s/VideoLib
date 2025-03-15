@@ -25,6 +25,10 @@ if(MSVC)
 endif()
 
 find_package( Qt5 REQUIRED COMPONENTS Core Gui Multimedia Network OpenGL Svg Widgets )
+if( UNIX AND NOT APPLE )
+  find_package( OpenGL REQUIRED )
+  find_package( GLUT REQUIRED )
+endif()
 
 file( GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.h ${PROJECT_SOURCE_DIR}/src/*.hpp ${PROJECT_SOURCE_DIR}/src/*.qrc )
 
