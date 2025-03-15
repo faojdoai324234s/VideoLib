@@ -2,6 +2,7 @@
 #include <QtWidgets/qapplication.h>
 #include <QtWidgets/qmainwindow.h>
 #include "mp4decrypt/decryption_processor.h"
+#include "sdl/sdl_init.h"
 
 extern "C" {
 #include "libavformat/avformat.h"
@@ -24,6 +25,10 @@ int main(int argc, char *argv[]) {
 		// SSL support enabled
 	}
 	else {
+		return -1;
+	}
+
+	if (SDL_Init(SDL_INIT_VIDEO) != 0){
 		return -1;
 	}
 
