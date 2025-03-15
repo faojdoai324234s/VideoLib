@@ -59,6 +59,13 @@ if( UNIX AND NOT APPLE )
   libmp4decrypt.so libmp4decrypt_debug.so
   )
 elseif( APPLE )
+  set( LINK_LIBS
+  libavcodec.dylib libavdevice.dylib libavfilter.dylib libavformat.dylib libavutil.dylib libpostproc.dylib libswresample.dylib libswscale.dylib
+  libcurl.dylib libcurl-d.dylib
+  libxml2d.dylib libxml2.dylib
+  libSDL3.dylib libSDL3d.dylib
+  libmp4decrypt.dylib libmp4decrypt_debug.dylib
+  )
 elseif( WIN32 )
   set( LINK_LIBS
   avcodec.lib avdevice.lib avfilter.lib avformat.lib avutil.lib postproc.lib swresample.lib swscale.lib
