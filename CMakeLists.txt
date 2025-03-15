@@ -14,6 +14,7 @@ set( CMAKE_AUTORCC ON )
 set( CURL_HEADERS_DIR ${PROJECT_SOURCE_DIR}/include )
 set( FFMPEG_HEADERS_DIR ${PROJECT_SOURCE_DIR}/include )
 set( LIBXML_HEADERS_DIR ${PROJECT_SOURCE_DIR}/include )
+set( SDL3_HEADERS_DIR ${PROJECT_SOURCE_DIR}/include )
 set( MP4DECRYPT_HEADERS_DIR ${PROJECT_SOURCE_DIR}/include )
 
 link_directories( ${PROJECT_SOURCE_DIR}/lib )
@@ -44,25 +45,48 @@ file( GLOB FFMPEG_HEADERS
   ${FFMPEG_HEADERS_DIR}/libswscale/*.h
 )
 file( GLOB LIBXML_HEADERS ${LIBXML_HEADERS_DIR}/libxml/*.h ${LIBXML_HEADERS_DIR}/private/*.h ${LIBXML_HEADERS_DIR}/win32config.h ${LIBXML_HEADERS_DIR}/wsockcompat.h )
+file( GLOB SDL3_HEADERS ${SDL3_HEADERS_DIR}/SDL3/*.h )
 file( GLOB MP4DECRYPT_HEADERS ${MP4DECRYPT_HEADERS_DIR}/mp4decrypt/*.h )
 
 add_executable( ${library_name} ${SRC_FILES} )
 
 set_property( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${library_name} )
 
-target_link_libraries( ${library_name} PRIVATE Qt5::Core Qt5::Gui Qt5::Multimedia Qt5::Network Qt5::OpenGL Qt5::Svg Qt5::Widgets
+if( UNIX AND NOT APPLE )
+  set( LINK_LIBS
+  libavcodec.so libavdevice.so libavfilter.so libavformat.so libavutil.so libpostproc.so libswresample.so libswscale.so
+  libcurl.so libcurl-d.so
+  libxml2d.so libxml2.so
+  libSDL3.so libSDL3d.so
+  libmp4decrypt.so libmp4decrypt_debug.so
+  )
+elseif( APPLE )
+  set( LINK_LIBS
+  libavcodec.dylib libavdevice.dylib libavfilter.dylib libavformat.dylib libavutil.dylib libpostproc.dylib libswresample.dylib libswscale.dylib
+  libcurl.dylib libcurl-d.dylib
+  libxml2d.dylib libxml2.dylib
+  libSDL3.dylib libSDL3d.dylib
+  libmp4decrypt.dylib libmp4decrypt_debug.dylib
+  )
+elseif( WIN32 )
+  set( LINK_LIBS
   avcodec.lib avdevice.lib avfilter.lib avformat.lib avutil.lib postproc.lib swresample.lib swscale.lib
-  libxml2d.lib libxml2.lib
   libcurl.lib libcurl_debug.lib
+  libxml2d.lib libxml2.lib
+  SDL3.lib SDL3d.lib
   mp4decrypt_debug.lib mp4decrypt.lib
   OpenGL32.lib GLU32.lib
   Ws2_32.lib Crypt32.lib Wldap32.lib Normaliz.lib  # Needed for libcurl
-)
+  )
+endif()
+
+target_link_libraries( ${library_name} PRIVATE Qt5::Core Qt5::Gui Qt5::Multimedia Qt5::Network Qt5::OpenGL Qt5::Svg Qt5::Widgets ${LINK_LIBS} )
 
 target_include_directories( ${library_name} PRIVATE
   ${CMAKE_CURRENT_BINARY_DIR}
   ${CURL_HEADERS_DIR}
   ${FFMPEG_HEADERS_DIR}
   ${LIBXML_HEADERS_DIR}
+  ${SDL3_HEADERS_DIR}
   ${MP4DECRYPT_HEADERS_DIR}
 )
