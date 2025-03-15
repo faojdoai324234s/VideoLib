@@ -14,6 +14,7 @@ set( CMAKE_AUTORCC ON )
 set( CURL_HEADERS_DIR ${PROJECT_SOURCE_DIR}/include )
 set( FFMPEG_HEADERS_DIR ${PROJECT_SOURCE_DIR}/include )
 set( LIBXML_HEADERS_DIR ${PROJECT_SOURCE_DIR}/include )
+set( SDL3_HEADERS_DIR ${PROJECT_SOURCE_DIR}/include )
 set( MP4DECRYPT_HEADERS_DIR ${PROJECT_SOURCE_DIR}/include )
 
 link_directories( ${PROJECT_SOURCE_DIR}/lib )
@@ -44,6 +45,7 @@ file( GLOB FFMPEG_HEADERS
   ${FFMPEG_HEADERS_DIR}/libswscale/*.h
 )
 file( GLOB LIBXML_HEADERS ${LIBXML_HEADERS_DIR}/libxml/*.h ${LIBXML_HEADERS_DIR}/private/*.h ${LIBXML_HEADERS_DIR}/win32config.h ${LIBXML_HEADERS_DIR}/wsockcompat.h )
+file( GLOB SDL3_HEADERS ${SDL3_HEADERS_DIR}/SDL3/*.h )
 file( GLOB MP4DECRYPT_HEADERS ${MP4DECRYPT_HEADERS_DIR}/mp4decrypt/*.h )
 
 add_executable( ${library_name} ${SRC_FILES} )
@@ -85,5 +87,6 @@ target_include_directories( ${library_name} PRIVATE
   ${CURL_HEADERS_DIR}
   ${FFMPEG_HEADERS_DIR}
   ${LIBXML_HEADERS_DIR}
+  ${SDL3_HEADERS_DIR}
   ${MP4DECRYPT_HEADERS_DIR}
 )
