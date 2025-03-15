@@ -2,7 +2,7 @@
 #include <QtWidgets/qapplication.h>
 #include <QtWidgets/qmainwindow.h>
 #include "mp4decrypt/decryption_processor.h"
-#include "sdl/sdl_init.h"
+#include "sdl/SDL_init.h"
 
 extern "C" {
 #include "libavformat/avformat.h"
