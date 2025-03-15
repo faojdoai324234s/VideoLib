@@ -1,4 +1,4 @@
-//#include "curl/curl.h"
+#include "curl/curl.h"
 #include <QtWidgets/qapplication.h>
 #include <QtWidgets/qmainwindow.h>
 
@@ -18,13 +18,13 @@ int main(int argc, char *argv[]) {
 	xmlDocPtr doc;
 	xmlNodePtr cur;
 
-	/*curl_version_info_data * vinfo = curl_version_info(CURLVERSION_NOW);
+	curl_version_info_data * vinfo = curl_version_info(CURLVERSION_NOW);
 	if (vinfo->features & CURL_VERSION_SSL) {
 		// SSL support enabled
 	}
 	else {
 		return -1;
-	}*/
+	}
 
 	QApplication* app = new QApplication(argc, argv);
 	QMainWindow mainWindow = QMainWindow();
