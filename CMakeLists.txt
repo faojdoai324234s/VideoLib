@@ -50,14 +50,28 @@ add_executable( ${library_name} ${SRC_FILES} )
 
 set_property( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${library_name} )
 
-target_link_libraries( ${library_name} PRIVATE Qt5::Core Qt5::Gui Qt5::Multimedia Qt5::Network Qt5::OpenGL Qt5::Svg Qt5::Widgets
+if( UNIX AND NOT APPLE )
+  set( LINK_LIBS
+  libavcodec.so libavdevice.so libavfilter.so libavformat.so libavutil.so libpostproc.so libswresample.so libswscale.so
+  libcurl.so libcurl-d.so
+  libxml2d.so libxml2.so
+  libSDL3.so libSDL3d.so
+  libmp4decrypt.so libmp4decrypt_debug.so
+  )
+elseif( APPLE )
+elseif( WIN32 )
+  set( LINK_LIBS
   avcodec.lib avdevice.lib avfilter.lib avformat.lib avutil.lib postproc.lib swresample.lib swscale.lib
-  libxml2d.lib libxml2.lib
   libcurl.lib libcurl_debug.lib
+  libxml2d.lib libxml2.lib
+  SDL3.lib SDL3d.lib
   mp4decrypt_debug.lib mp4decrypt.lib
   OpenGL32.lib GLU32.lib
   Ws2_32.lib Crypt32.lib Wldap32.lib Normaliz.lib  # Needed for libcurl
-)
+  )
+endif()
+
+target_link_libraries( ${library_name} PRIVATE Qt5::Core Qt5::Gui Qt5::Multimedia Qt5::Network Qt5::OpenGL Qt5::Svg Qt5::Widgets ${LINK_LIBS} )
 
 target_include_directories( ${library_name} PRIVATE
   ${CMAKE_CURRENT_BINARY_DIR}
