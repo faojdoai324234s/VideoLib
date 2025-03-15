@@ -1,6 +1,7 @@
 #include "curl/curl.h"
 #include <QtWidgets/qapplication.h>
 #include <QtWidgets/qmainwindow.h>
+#include "mp4decrypt/decryption_processor.h"
 
 extern "C" {
 #include "libavformat/avformat.h"
@@ -26,6 +27,8 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 
+    DecryptionProcessor processor = DecryptionProcessor();
+    
 	QApplication* app = new QApplication(argc, argv);
 	QMainWindow mainWindow = QMainWindow();
 	mainWindow.setFixedSize(1920, 1080);
