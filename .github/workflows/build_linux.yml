@@ -28,7 +28,7 @@ jobs:
 
       - name: Find OpenGL header
         run: |
-          apt-file update
+          apt update
           apt-file search "gl.h"
           
       - name: Build library
