@@ -28,7 +28,9 @@ endif()
 find_package( Qt5 REQUIRED COMPONENTS Core Gui Multimedia Network OpenGL Svg Widgets )
 if( UNIX AND NOT APPLE )
   find_package( OpenGL REQUIRED )
+  message(STATUS "OpenGL included at ${OPENGL_INCLUDE_DIR}")
   find_package( GLUT REQUIRED )
+  message(STATUS "GLUT included at ${GLUT_INCLUDE_DIR}")
 endif()
 
 file( GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.h ${PROJECT_SOURCE_DIR}/src/*.hpp ${PROJECT_SOURCE_DIR}/src/*.qrc )
@@ -59,7 +61,7 @@ if( UNIX AND NOT APPLE )
   libxml2d.so libxml2.so
   libSDL3.so libSDL3d.so
   libmp4decrypt.so libmp4decrypt_debug.so
-  OpenGL::GL OpenGL::GLU
+  OpenGL::GL OpenGL::GLU ${OPENGL_LIBRARY}
   )
 elseif( APPLE )
   set( LINK_LIBS
@@ -91,4 +93,5 @@ target_include_directories( ${library_name} PRIVATE
   ${SDL3_HEADERS_DIR}
   ${MP4DECRYPT_HEADERS_DIR}
   ${OPENGL_INCLUDE_DIR}
+  ${GLUT_INCLUDE_DIR}
 )
