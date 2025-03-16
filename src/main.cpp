@@ -4,8 +4,13 @@
 #include <QtWidgets/qopenglwidget.h>
 #include "mp4decrypt/decryption_processor.h"
 #include "SDL3/SDL_init.h"
-#include <GL/glu.h>
+#if defined(__APPLE__)
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
+#else
 #include <GL/gl.h>
+#include <GL/glu.h>
+#endif
 
 extern "C" {
 #include "libavformat/avformat.h"
