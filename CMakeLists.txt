@@ -26,13 +26,7 @@ if(MSVC)
 endif()
 
 find_package( Qt5 REQUIRED COMPONENTS Core Gui Multimedia Network OpenGL Svg Widgets )
-if( UNIX AND NOT APPLE )
-  find_package( OpenGL REQUIRED )
-  find_package( GLUT REQUIRED )
-elseif( APPLE )
-  find_package( OpenGL REQUIRED )
-  find_package( GLUT REQUIRED )
-endif()
+find_package( OpenGL REQUIRED )
 
 file( GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.h ${PROJECT_SOURCE_DIR}/src/*.hpp ${PROJECT_SOURCE_DIR}/src/*.qrc )
 
@@ -62,7 +56,6 @@ if( UNIX AND NOT APPLE )
   libxml2d.so libxml2.so
   libSDL3.so libSDL3d.so
   libmp4decrypt.so libmp4decrypt_debug.so
-  OpenGL::GL OpenGL::GLU
   )
 elseif( APPLE )
   set( LINK_LIBS
@@ -71,7 +64,6 @@ elseif( APPLE )
   libxml2d.dylib libxml2.dylib
   libSDL3.dylib libSDL3d.dylib
   libmp4decrypt.dylib libmp4decrypt_debug.dylib
-  OpenGL::GL OpenGL::GLU
   )
 elseif( WIN32 )
   set( LINK_LIBS
@@ -80,12 +72,11 @@ elseif( WIN32 )
   libxml2d.lib libxml2.lib
   SDL3.lib SDL3d.lib
   mp4decrypt_debug.lib mp4decrypt.lib
-  OpenGL32.lib GLU32.lib
   Ws2_32.lib Crypt32.lib Wldap32.lib Normaliz.lib  # Needed for libcurl
   )
 endif()
 
-target_link_libraries( ${library_name} PRIVATE Qt5::Core Qt5::Gui Qt5::Multimedia Qt5::Network Qt5::OpenGL Qt5::Svg Qt5::Widgets ${LINK_LIBS} )
+target_link_libraries( ${library_name} PRIVATE Qt5::Core Qt5::Gui Qt5::Multimedia Qt5::Network Qt5::OpenGL Qt5::Svg Qt5::Widgets OpenGL::GL OpenGL::GLU ${LINK_LIBS} )
 
 target_include_directories( ${library_name} PRIVATE
   ${CMAKE_CURRENT_BINARY_DIR}
