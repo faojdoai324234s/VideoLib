@@ -90,4 +90,5 @@ target_include_directories( ${library_name} PRIVATE
   ${LIBXML_HEADERS_DIR}
   ${SDL3_HEADERS_DIR}
   ${MP4DECRYPT_HEADERS_DIR}
+  ${OPENGL_INCLUDE_DIR}
 )
