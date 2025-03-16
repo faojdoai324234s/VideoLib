@@ -71,6 +71,7 @@ elseif( APPLE )
   libxml2d.dylib libxml2.dylib
   libSDL3.dylib libSDL3d.dylib
   libmp4decrypt.dylib libmp4decrypt_debug.dylib
+  OpenGL::GL OpenGL::GLU
   )
 elseif( WIN32 )
   set( LINK_LIBS
