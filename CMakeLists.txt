@@ -29,6 +29,9 @@ find_package( Qt5 REQUIRED COMPONENTS Core Gui Multimedia Network OpenGL Svg Wid
 if( UNIX AND NOT APPLE )
   find_package( OpenGL REQUIRED )
   find_package( GLUT REQUIRED )
+elseif( APPLE )
+  find_package( OpenGL REQUIRED )
+  find_package( GLUT REQUIRED )
 endif()
 
 file( GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.h ${PROJECT_SOURCE_DIR}/src/*.hpp ${PROJECT_SOURCE_DIR}/src/*.qrc )
@@ -68,6 +71,7 @@ elseif( APPLE )
   libxml2d.dylib libxml2.dylib
   libSDL3.dylib libSDL3d.dylib
   libmp4decrypt.dylib libmp4decrypt_debug.dylib
+  OpenGL::GL OpenGL::GLU
   )
 elseif( WIN32 )
   set( LINK_LIBS
