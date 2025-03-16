@@ -4,8 +4,10 @@
 #include <QtWidgets/qopenglwidget.h>
 #include "mp4decrypt/decryption_processor.h"
 #include "SDL3/SDL_init.h"
-#include <gl/GLU.h>
-#include <gl/GL.h>
+//#include <gl/GLU.h>
+//#include <gl/GL.h>
+#include <GL/glu.h>
+#include <GL/gl.h>
 
 extern "C" {
 #include "libavformat/avformat.h"
