@@ -59,6 +59,7 @@ if( UNIX AND NOT APPLE )
   libxml2d.so libxml2.so
   libSDL3.so libSDL3d.so
   libmp4decrypt.so libmp4decrypt_debug.so
+  OpenGL::GL OpenGL::GLU
   )
 elseif( APPLE )
   set( LINK_LIBS
