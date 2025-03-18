@@ -26,7 +26,7 @@ if(MSVC)
 endif()
 
 find_package( Qt5 REQUIRED COMPONENTS Core Gui Multimedia Network OpenGL Svg Widgets )
-find_package( OpenGL REQUIRED COMPONENTS OpenGL )
+find_package( OpenGL REQUIRED COMPONENTS EGL OpenGL )
 
 file( GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.h ${PROJECT_SOURCE_DIR}/src/*.hpp ${PROJECT_SOURCE_DIR}/src/*.qrc )
 
@@ -76,7 +76,7 @@ elseif( WIN32 )
   )
 endif()
 
-target_link_libraries( ${library_name} PRIVATE Qt5::Core Qt5::Gui Qt5::Multimedia Qt5::Network Qt5::OpenGL Qt5::Svg Qt5::Widgets OpenGL::GL OpenGL::GLU ${LINK_LIBS} )
+target_link_libraries( ${library_name} PRIVATE Qt5::Core Qt5::Gui Qt5::Multimedia Qt5::Network Qt5::OpenGL Qt5::Svg Qt5::Widgets OpenGL::EGL OpenGL::GL OpenGL::GLU ${LINK_LIBS} )
 
 target_include_directories( ${library_name} PRIVATE
   ${CMAKE_CURRENT_BINARY_DIR}
