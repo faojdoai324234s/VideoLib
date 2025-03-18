@@ -26,7 +26,11 @@ if(MSVC)
 endif()
 
 find_package( Qt5 REQUIRED COMPONENTS Core Gui Multimedia Network OpenGL Svg Widgets )
-find_package( OpenGL REQUIRED COMPONENTS OpenGL )
+if( UNIX AND NOT APPLE )
+  find_package( OpenGL REQUIRED COMPONENTS EGL OpenGL )
+else()
+  find_package( OpenGL REQUIRED COMPONENTS OpenGL )
+endif()
 
 file( GLOB SRC_FILES ${PROJECT_SOURCE_DIR}/src/*.cpp ${PROJECT_SOURCE_DIR}/src/*.h ${PROJECT_SOURCE_DIR}/src/*.hpp ${PROJECT_SOURCE_DIR}/src/*.qrc )
 
@@ -56,6 +60,7 @@ if( UNIX AND NOT APPLE )
   libxml2d.so libxml2.so
   libSDL3.so libSDL3d.so
   libmp4decrypt.so libmp4decrypt_debug.so
+  OenGL::EGL
   )
 elseif( APPLE )
   set( LINK_LIBS
