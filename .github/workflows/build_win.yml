@@ -20,7 +20,11 @@ jobs:
       - name: Install dependencies
         shell: cmd
         run: |
-          vcpkg install glfw3
+          git clone https://github.com/glfw/glfw.git
+          echo "Listing root..."
+          dir
+          echo "Listing glfw..."
+          dir glfw
           
       - name: Build library
         shell: cmd
