@@ -11,6 +11,7 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #endif
+#include <GLFW/glfw3.h>
 
 extern "C" {
 #include "libavformat/avformat.h"
@@ -60,6 +61,11 @@ protected:
 
 int main(int argc, char *argv[]) {
 
+    if (!glfwInit()) {
+        return -1;
+    }
+    glfwTerminate();
+    
 	const char* a = avformat_license();
 	
 	xmlDocPtr doc;
