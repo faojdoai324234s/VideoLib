@@ -25,8 +25,12 @@ jobs:
         shell: cmd
         run: |
           git clone https://github.com/faojdoai324234s/Qt-${{ env.platform }}.git
+          rename include/glad/gl.h include/glad/gl_debug.h
+          rename include/glad/gl_release.h include/glad/gl.h
           cmake -B build -D Qt5_DIR="Qt-${{ env.platform }}/Qt-${{ env.Qt_patch_version }}/lib/cmake/Qt5"
           cmake --build build --config Debug
           rmdir /s /q build
+          rename include/glad/gl.h include/glad/gl_debug.h
+          rename include/glad/gl_release.h include/glad/gl.h
           cmake -B build -D Qt5_DIR="Qt-${{ env.platform }}/Qt-${{ env.Qt_patch_version }}/lib/cmake/Qt5"
           cmake --build build --config Release
