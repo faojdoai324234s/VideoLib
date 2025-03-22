@@ -20,6 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update && sudo apt-get -y install libgl1-mesa-dev freeglut3-dev
+          git clone https://github.com/glfw/glfw.git
           
       - name: Build library
         run: |
