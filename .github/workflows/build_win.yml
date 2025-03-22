@@ -26,8 +26,8 @@ jobs:
         shell: cmd
         run: |
           git clone https://github.com/faojdoai324234s/Qt-${{ env.platform }}.git
-          cmake -B build -D Qt5_DIR="Qt-${{ env.platform }}/Qt-${{ env.Qt_patch_version }}/lib/cmake/Qt5"
+          cmake -B build -D Qt5_DIR="Qt-${{ env.platform }}/Qt-${{ env.Qt_patch_version }}/lib/cmake/Qt5" -D CMAKE_TOOLCHAIN_FILE=%VCPKG_CMAKE%
           cmake --build build --config Debug
           rmdir /s /q build
-          cmake -B build -D Qt5_DIR="Qt-${{ env.platform }}/Qt-${{ env.Qt_patch_version }}/lib/cmake/Qt5"
+          cmake -B build -D Qt5_DIR="Qt-${{ env.platform }}/Qt-${{ env.Qt_patch_version }}/lib/cmake/Qt5" -D CMAKE_TOOLCHAIN_FILE=%VCPKG_CMAKE%
           cmake --build build --config Release
