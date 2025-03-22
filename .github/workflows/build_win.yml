@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         shell: cmd
         run: |
-          vcpkg install glfw
+          vcpkg install glfw3
           
       - name: Build library
         shell: cmd
