@@ -11,7 +11,9 @@
 #include <GL/gl.h>
 #include <GL/glu.h>
 #endif
+#define GLFW_INCLUDE_NONE
 #include <GLFW/glfw3.h>
+#include <glad/gl.h>
 
 extern "C" {
 #include "libavformat/avformat.h"
