@@ -17,6 +17,11 @@ jobs:
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v4
+      - name: Install dependencies
+        shell: cmd
+        run: |
+          vcpkg install glfw3
+          
       - name: Build library
         shell: cmd
         run: |
