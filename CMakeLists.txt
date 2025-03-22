@@ -26,6 +26,7 @@ if(MSVC)
 endif()
 
 find_package( Qt5 REQUIRED COMPONENTS Core Gui Multimedia Network OpenGL Svg Widgets )
+find_package(glfw3 3.4 REQUIRED)
 if( UNIX AND NOT APPLE )
   find_package( OpenGL REQUIRED COMPONENTS EGL OpenGL )
 else()
@@ -81,7 +82,7 @@ elseif( WIN32 )
   )
 endif()
 
-target_link_libraries( ${library_name} PRIVATE Qt5::Core Qt5::Gui Qt5::Multimedia Qt5::Network Qt5::OpenGL Qt5::Svg Qt5::Widgets OpenGL::GL OpenGL::GLU ${LINK_LIBS} )
+target_link_libraries( ${library_name} PRIVATE Qt5::Core Qt5::Gui Qt5::Multimedia Qt5::Network Qt5::OpenGL Qt5::Svg Qt5::Widgets glfw OpenGL::GL OpenGL::GLU ${LINK_LIBS} )
 
 target_include_directories( ${library_name} PRIVATE
   ${CMAKE_CURRENT_BINARY_DIR}
