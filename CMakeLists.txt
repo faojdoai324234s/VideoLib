@@ -26,7 +26,7 @@ if(MSVC)
 endif()
 
 find_package( Qt5 REQUIRED COMPONENTS Core Gui Multimedia Network OpenGL Svg Widgets )
-find_package(glfw3 REQUIRED)
+find_package(glfw3 CONFIG REQUIRED)
 if( UNIX AND NOT APPLE )
   find_package( OpenGL REQUIRED COMPONENTS EGL OpenGL )
 else()
