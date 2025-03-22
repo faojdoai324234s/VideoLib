@@ -33,6 +33,7 @@ elseif( APPLE )
   find_package( OpenGL REQUIRED COMPONENTS OpenGL )
   find_package( glfw3 CONFIG REQUIRED )
 else()
+  find_package( OpenGL REQUIRED COMPONENTS OpenGL )
   add_subdirectory( ${PROJECT_SOURCE_DIR}/glfw )
 endif()
 
