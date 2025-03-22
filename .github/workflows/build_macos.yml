@@ -20,6 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           git clone https://github.com/glfw/glfw.git
+          pip install glad
           
       - name: Build library
         run: |
