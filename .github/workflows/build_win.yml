@@ -18,8 +18,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install dependencies
+        shell: cmd
         run: |
           git clone https://github.com/glfw/glfw.git
+          pip install glad
           
       - name: Build library
         shell: cmd
