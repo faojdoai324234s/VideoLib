@@ -24,9 +24,24 @@ jobs:
       - name: Build library
         shell: cmd
         run: |
+          mkdir upload
+          mkdir upload\debug
+          mkdir upload\release
           git clone https://github.com/faojdoai324234s/Qt-${{ env.platform }}.git
           cmake -B build -D Qt5_DIR="Qt-${{ env.platform }}/Qt-${{ env.Qt_patch_version }}/lib/cmake/Qt5"
           cmake --build build --config Debug
+          copy /y /v D:\a\VideoLib\VideoLib\build\glfw\src\Debug\glfw3.lib upload\glfw3_debug.lib
+          xcopy /y /v /s /e D:\a\VideoLib\VideoLib\build upload\debug
           rmdir /s /q build
           cmake -B build -D Qt5_DIR="Qt-${{ env.platform }}/Qt-${{ env.Qt_patch_version }}/lib/cmake/Qt5"
           cmake --build build --config Release
+          copy /y /v D:\a\VideoLib\VideoLib\build\glfw\src\Release\glfw3.lib upload
+          xcopy /y /v /s /e D:\a\VideoLib\VideoLib\build upload\release
+          
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Windows-artifact
+          path: ${{github.workspace}}/upload
+          if-no-files-found: ignore
+          retention-days: 0
