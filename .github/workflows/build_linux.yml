@@ -21,6 +21,7 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get -y install libgl1-mesa-dev freeglut3-dev libwayland-dev libxkbcommon-dev libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libxext-dev
           git clone https://github.com/glfw/glfw.git
+          pip install glad
           
       - name: Build library
         run: |
