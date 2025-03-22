@@ -61,6 +61,11 @@ protected:
 
 int main(int argc, char *argv[]) {
 
+    if (!glfwInit()) {
+        return -1;
+    }
+    glfwTerminate();
+    
 	const char* a = avformat_license();
 	
 	xmlDocPtr doc;
