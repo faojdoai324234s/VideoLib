@@ -17,6 +17,10 @@ jobs:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          git clone https://github.com/glfw/glfw.git
+          
       - name: Build library
         run: |
           git clone https://github.com/faojdoai324234s/Qt-${{ env.platform }}.git
